@@ -1,5 +1,5 @@
 {% set name = "types-pyRFC3339" %}
-{% set version = "0.1.2" %}
+{% set version = "1.1.0" %}
 
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/types-pyRFC3339-{{ version }}.tar.gz
-  sha256: 3f3c071086ce9b7a91a3c365cebd22bd8978ddb5d4146aabd88d0cffea9fa119
+  sha256: 4387a1eb2eec4edeb11fd30d0b9b39b57b2c75ab58051b376ba09c19e50e6609
 
 build:
   number: 0
