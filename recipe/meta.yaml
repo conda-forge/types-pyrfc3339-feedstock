@@ -1,3 +1,4 @@
+{% set python_min = python_min|default("0.1a0") %}
 {% set name = "types-pyRFC3339" %}
 {% set version = "2.0.1.20241107" %}
 
@@ -13,16 +14,19 @@ source:
 build:
   number: 0
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
     - pip
-    - python >=3.6
+    - setuptools
+    - python {{ python_min }}.*
   run:
-    - python >=3.6
+    - python >={{ python_min }}
 
 test:
+  requires:
+    - python ={{ python_min }}
   commands:
     - test -f $SP_DIR/pyrfc3339-stubs/__init__.pyi
 
