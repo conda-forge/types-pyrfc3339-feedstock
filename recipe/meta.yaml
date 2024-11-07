@@ -1,4 +1,4 @@
-{% set python_min = python_min|default("0.1a0") %}
+{% set python_min = python_min|default("3.8") %}
 {% set name = "types-pyRFC3339" %}
 {% set version = "2.0.1.20241107" %}
 
