@@ -1,5 +1,6 @@
+{% set python_min = python_min|default("3.8") %}
 {% set name = "types-pyRFC3339" %}
-{% set version = "1.1.1.5" %}
+{% set version = "2.0.1.20241107" %}
 
 
 package:
@@ -8,21 +9,24 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/types-pyRFC3339-{{ version }}.tar.gz
-  sha256: e45e8f4d039bc0c7e32e1c19bb915a01e8c2768f776996f1a4763efc654d8c51
+  sha256: 0f84380fc93c1c65fd45f06afc5ae0ef90874411780863525490c7924d85bc5d
 
 build:
   number: 0
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
     - pip
-    - python >=3.6
+    - setuptools
+    - python {{ python_min }}.*
   run:
-    - python >=3.6
+    - python >={{ python_min }}
 
 test:
+  requires:
+    - python ={{ python_min }}
   commands:
     - test -f $SP_DIR/pyrfc3339-stubs/__init__.pyi
 
