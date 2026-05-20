@@ -1,0 +1,48 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
+context:
+  version: "2.0.1.20250825"
+
+package:
+  name: types-pyrfc3339
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/t/types-pyRFC3339/types_pyrfc3339-${{ version }}.tar.gz
+  sha256: 954797ad8262e93eca99a6015efdbbf6d4028a0e9e460ab82ef8d440dd7b5480
+
+build:
+  number: 1
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+
+tests:
+  - package_contents:
+      site_packages:
+        - pyrfc3339-stubs/__init__.pyi
+  - python:
+      imports: []
+      pip_check: true
+      python_version: ${{ python_min }}.*
+
+about:
+  homepage: https://github.com/python/typeshed
+  repository: https://github.com/python/typeshed
+  summary: Typing stubs for pyRFC3339
+  license: Apache-2.0 AND MIT
+  license_file: LICENSE
+
+extra:
+  recipe-maintainers:
+    - fhoehle
+    - conda-forge/mypy
